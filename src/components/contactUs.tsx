@@ -28,7 +28,10 @@ type Props = {
 const ContactUs = ({ setSelectedpage }: Props) => {
   // Zod schema for form validation
   const User: ZodType<userDetails> = z.object({
-    name: z.string().min(3, "minimum 3 character").max(12, "maximum 12 character"),
+    name: z
+      .string()
+      .min(3, "minimum 3 character")
+      .max(12, "maximum 12 character"),
     email: z.string().email("ex: test@gmail.com"),
     message: z.string(),
   });
@@ -57,11 +60,11 @@ const ContactUs = ({ setSelectedpage }: Props) => {
         UserData,
         "chOZPoVSmpvRzErPS"
       )
-      .then((response) => {
+      .then(() => {
         toast.success("Message sent successfully"); // Notify user of success
         reset({ name: "", email: "", message: "" }); // Reset form fields
       })
-      .catch((error) => {
+      .catch(() => {
         toast.error("Something went wrong while sending the email."); // Notify user of error
       });
   };
@@ -106,22 +109,21 @@ const ContactUs = ({ setSelectedpage }: Props) => {
                 {...register("name", { required: "Name is required" })} // Register name input with validation
                 className="w-full rounded-md bg-red-300 h-10 placeholder:text-white pl-2"
               />
-              {errors.name && <p>{errors.name.message}</p>} {/* Display name validation error */}
-
+              {errors.name && <p>{errors.name.message}</p>}{" "}
+              {/* Display name validation error */}
               <input
                 type="email"
                 placeholder="Email"
                 {...register("email", { required: "Email is required" })} // Register email input with validation
                 className="w-full rounded-md bg-red-300 h-10 placeholder:text-white pl-2"
               />
-              {errors.email && <p>{errors.email.message}</p>} {/* Display email validation error */}
-
+              {errors.email && <p>{errors.email.message}</p>}{" "}
+              {/* Display email validation error */}
               <textarea
                 placeholder="Message"
                 {...register("message")} // Register message textarea
                 className="w-full rounded-md bg-red-300 h-20 placeholder:text-white placeholder:text-start p-2"
               ></textarea>
-
               <button
                 type="submit"
                 className="border bg-yellow-400/100 hover:bg-yellow-500 w-1/3 py-2 rounded-md font-bold"
@@ -139,7 +141,11 @@ const ContactUs = ({ setSelectedpage }: Props) => {
             viewport={{ once: true }} // Animation only once
             className="mt-6 md:mt-0"
           >
-            <img src={ContactUsPageGraphic} alt="Contact Us" className="w-full" />
+            <img
+              src={ContactUsPageGraphic}
+              alt="Contact Us"
+              className="w-full"
+            />
           </motion.div>
         </div>
       </motion.div>

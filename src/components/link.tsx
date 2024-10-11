@@ -1,4 +1,3 @@
-import { useState } from "react";
 import AnchorLink from "react-anchor-link-smooth-scroll";
 import { SelectedPage } from "../shared/navSelected";
 
@@ -6,15 +5,9 @@ type Props = {
   page: string;
   selectedpage: SelectedPage;
   setSelectedpage: (value: SelectedPage) => void;
- 
 };
 
-const Link = ({
-  page,
-  selectedpage,
-  setSelectedpage,
-  
-}: Props) => {
+const Link = ({ page, selectedpage, setSelectedpage }: Props) => {
   const lowerCasePage = page.toLowerCase().replace(/ /g, "") as SelectedPage;
   return (
     <AnchorLink
@@ -24,7 +17,6 @@ const Link = ({
       href={`#${lowerCasePage}`}
       onClick={() => {
         setSelectedpage(lowerCasePage);
-    
       }}
     >
       {page}
